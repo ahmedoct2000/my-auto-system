@@ -1,0 +1,26 @@
+name: Auto Global Publisher
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Auto publish content
+        run: |
+          echo "Starting automated publishing..."
+          for file in content/*.txt; do
+            lang=$(basename "$file" .txt)
+            echo "Publishing language: $lang"
+            echo "Content:"
+            cat "$file"
+            echo "-----"
+          done
+          echo "Publishing completed successfully."
