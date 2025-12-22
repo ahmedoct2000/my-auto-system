@@ -17,7 +17,7 @@ jobs:
           for file in content/*.txt; do
             lang=$(basename "$file" .txt)
             content=$(cat "$file")
-            sed \
+          # sed \
               -e "s/{{LANG}}/$lang/g" \
               -e "s|{{CONTENT}}|$content|g" \
               -e "s|{{LINK1}}|https://www.surveoo.com/?r=1242742|g" \
